@@ -1,5 +1,6 @@
-
+import styles from "../styles/Layout.module.css"
 import Link from "next/link"
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
     const links = [
@@ -20,12 +21,14 @@ export default function Layout({ children }) {
           path:"/sections"
         }
       ];
+      const router = useRouter();
     return(
-        <>
+        <div className={styles.container}>
          {links.map(link => {
-            return <Link href={link.path}><a>{link.title}{" "}</a></Link>;
+            const className = link.path ===router.asPath ? styles.active : styles.link;
+            return <Link href={link.path}><a className={className}>{link.title}{" "}</a></Link>;
          })}
           {children}
-        </>
+        </div>
     )
 }

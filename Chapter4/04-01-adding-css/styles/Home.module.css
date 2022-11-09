@@ -43,6 +43,7 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  color:saddlebrown;
 }
 
 .title,
@@ -88,8 +89,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: blueviolet;
+  border-color: blueviolet;
 }
 
 .card h2 {

@@ -1,21 +1,17 @@
 import Head from 'next/head'
 import Layout from "../../components/Layout"
-import { handler } from "../api";
+import List from '../../components/list';
+import { handler, results } from "../api";
 
-function News({ results, title }) {
+function News( props ) {
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={title} />
+        <title>{props.title}</title>
+        <meta name="description" content={props.title} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-          <h1>{title}</h1>
-          <ul>
-            {results?.map(result => <li><a href={result.url} rel="noreferrer nofollower">{result.title}</a></li>)}
-          </ul>
-        </main>
+        <List {...props}/>
     </Layout>);
 }
 
@@ -31,7 +27,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const results=await handler(`https://api.nytimes.com/svc/news/v3/content/nyt/${params.section}.json?api-key=${API_KEY}`)
+  const results=await results(`https://api.nytimes.com/svc/news/v3/content/nyt/${params.section}.json?api-key=${API_KEY}`)
 
 
 

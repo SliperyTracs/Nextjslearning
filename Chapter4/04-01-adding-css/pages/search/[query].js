@@ -1,14 +1,11 @@
 import Layout from "../../components/Layout"
 import { search } from "../api"
+import List from "../../components/list"
 
-export default function News({ results }) {
+export default function News( props ) {
     return(
       <Layout>
-        <ul>
-            {results.map(result => {
-              return(<li key={result.uri}><a href={result.url} target="_blank" rel="noopener norefferer">{result.title}</a></li>)
-            })}
-        </ul>
+        <List {...props}/>
       </Layout>
     )
 }

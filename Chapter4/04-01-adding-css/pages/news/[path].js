@@ -1,21 +1,17 @@
 import Head from 'next/head'
 import Layout from "../../components/Layout"
-import { handler } from "../api";
+import { handler, results } from "../api";
+import List from "../../components/list"
 
-function News({ results, title }) {
+function News( props ) {
   return (
     <Layout>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={title} />
+        <title>{props.title}</title>
+        <meta name="description" content={props.title} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-          <h1>{title}</h1>
-          <ul>
-            {results?.map(result => <li><a href={result.url} rel="noreferrer nofollower">{result.title}</a></li>)}
-          </ul>
-        </main>
+      <List {...props}/>
     </Layout>);
 }
 
@@ -41,14 +37,14 @@ export async function getStaticProps({ params }) {
     case 'top-stories':
       return {
         props: {
-          results : await handler(TOP_STORIES_URL),
+          results : await results(TOP_STORIES_URL),
           title: "Top Stories" 
         }
       }
     case 'popular':
       return {
         props: {
-          results : await handler(POPULAR_URL),
+          results : await results(POPULAR_URL),
           title: "Popular" 
         }
       }

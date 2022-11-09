@@ -1,0 +1,20 @@
+.container{
+    width:80%;
+    margin:1.5rem auto;
+}
+.link{
+    color:black
+}
+.link:hover{
+    color:white;
+    background-color: purple;
+}
+.active {
+    color:blueviolet;
+    font-weight:700;
+}
+.active:hover{
+    color:white;
+    background-color: purple;
+
+}
